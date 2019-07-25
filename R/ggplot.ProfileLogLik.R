@@ -2,7 +2,11 @@ ggplot.ProfileLogLik <- function(filename, comp = NA, combine.penalties = TRUE, 
                                  x.axis.title = "NA"){
 
 # filename: containing the profile data
-# free.par: the parameter that has been profiled
+# comp: a vector giving the indices of the component to plot
+# combine.penalties: boolean to combine or not the many priors and penalties component of a Bayesian objective function
+# add.total: boolean to indicate whether or not plotting the total objective function
+# x.axis.title: a character string to indicate the x-axis title
+
 
 # Extract profiles data from CASAL files
 library(casal)
@@ -53,7 +57,7 @@ p = ggplot(data = my.df, aes(x = par.value, y = obj.fct, col = component)) +
     ylab("Scaled objective function") +
     ylim(c(-0.1, 1)) +
     theme_light()
-if(x.axis.title == "B0"){ p = p + xlab(expression(B[0])) } else { p = p + xlab(a.axis.title)}
+if(x.axis.title == "B0"){ p = p + xlab(expression(B[0])) } else { p = p + xlab(x.axis.title)}
 
 return(p)
 }
