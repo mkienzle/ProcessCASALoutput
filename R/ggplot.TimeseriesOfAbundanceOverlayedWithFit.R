@@ -1,4 +1,5 @@
 #
+
 ggplot.TimeseriesOfAbundanceOverlayedWithFit <- function(datafile = NA, path = NA,
                                                          AbundIndex.Name = NA, y.axis.lab = "", xlab = c(2000, 2018),
                                                          ylim = c(0, 1200), increment = 1e2,
