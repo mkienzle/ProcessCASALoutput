@@ -4,7 +4,7 @@ ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot 
   library(casal)
 
   # Resolve some naming issues
-  name.in.input.file = grep(quant2plot, names(extract.quantities(filename1)), value = TRUE)
+  name.in.input.file = grep(quant2plot, names(extract.quantities(filename[1])), value = TRUE)
   #print(name.in.input.file)
 
 
