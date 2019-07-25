@@ -64,7 +64,7 @@ return(p)
 
 
 # Example
-#filename = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/model 1-example-basecaseHAK2018/Profile-Output.txt"
+#filename = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN9_ALLsurveyLogisticSigR08/Profile-Output.txt"
 
 #combine.penalties = TRUE
 #add.total = TRUE
