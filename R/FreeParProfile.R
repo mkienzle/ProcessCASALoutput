@@ -2,7 +2,7 @@ FreeParProfile <- function(filename, free.par = "initialization.B0", comp = NA, 
                                  x.axis.title = "NA", prior.penalties.keywords = c("prior","cl"), legend.position = "right"){
 
 # filename: containing the profile data produce by the command: casal -p > filename
-# free.par: the parameter estimated by CASAL that we want to plot the profile of    
+# free.par: the parameter estimated by CASAL that we want to plot the profile of
 # comp: a vector giving the indices of the component to plot
 # combine.penalties: boolean to combine or not the many priors and penalties component of a Bayesian objective function
 # add.total: boolean to indicate whether or not plotting the total objective function
@@ -54,6 +54,9 @@ for(i in 1:nrow(a)){
 }
 }
 
+# We want to show the profile of the objective function (Total) with a solid line
+if(add.total) my.df$component = relevel(my.df$component, ref = "Total")
+
 # Plot the profile
 library(ggplot2)
 
@@ -70,7 +73,7 @@ p = ggplot(data = my.df) +
         if(x.axis.title == "R0")
         {p = p + xlab(expression(R[0])) }
         else {p = p + xlab(x.axis.title)}}
-    
+
     return(p)
 
 }
@@ -83,5 +86,5 @@ p = ggplot(data = my.df) +
 #add.total = TRUE
 #x.axis.title = "B0"
 
-#print(FreeParProfile("Profile-Output.txt", free.par = "initialization.R0", combine.penalties=FALSE, add.total=TRUE, x.axis.title="R0", legend.position = "left"))
+#print(FreeParProfile(filename, free.par = "initialization.B0", combine.penalties=TRUE, add.total=TRUE, x.axis.title="B0", legend.position = "left"))
 
