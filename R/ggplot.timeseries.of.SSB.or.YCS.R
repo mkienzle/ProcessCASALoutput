@@ -1,4 +1,4 @@
-ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot = "SSB"){
+ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot = "SSB", mgt.ref.points = FALSE){
 
   #
   library(casal)
@@ -29,8 +29,39 @@ ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot 
 
   # Plot
   library(ggplot2)
-  my.p = ggplot(data = my.df, aes(x = year, y = eval(parse(text = name.in.df)), col = model)) + geom_line() +
+  my.p = ggplot(data = my.df) +
+  geom_line(mapping = aes(x = year, y = eval(parse(text = name.in.df)), col = model), size = 1.2) +
     xlab("") + ylab(quant2plot) + theme_light()
+
+  ######################################################################################################################################
+  # Add management reference points
+
+  ## For a single filenames
+
+    B0 = extract.quantities(file = filenames[1])$B0
+    #print(B0)
+
+  if(mgt.ref.points){
+
+    # Warn user
+    print("Adding Management Reference Points with respect to B0 in the first filename")
+
+    # Add managment reference point
+    #print("adding mgt.ref.points")
+    my.p <- my.p +
+      geom_hline(aes(yintercept = 1 * B0),   lwd = 1, lty = 2, col = "lightgrey", show.legend = FALSE) +
+      geom_hline(aes(yintercept = 0.4 * B0), lwd = 1, lty = 2, col = "lightgrey", show.legend = FALSE) +
+      geom_hline(aes(yintercept = 0.2 * B0), lwd = 1, lty = 2, col = "lightgrey", show.legend = FALSE) +
+      geom_hline(aes(yintercept = 0.1 * B0), lwd = 1, lty = 2, col = "lightgrey", show.legend = FALSE) +
+      geom_label(aes(min(my.df$year), 1 * B0, label = "B0"), fill = "white") +
+      geom_label(aes(min(my.df$year) + 1, 0.4 * B0, label = "40% B0"), fill = "white") +
+      geom_label(aes(min(my.df$year) + 1, 0.2 * B0, label = "20% B0"), fill = "white") +
+      geom_label(aes(min(my.df$year) + 1, 0.1 * B0, label = "10% B0"), fill = "white")
+
+    #scale_linetype_manual(name = "limits", values=2)
+    #values = c(2,2),
+    #                        guide = guide_legend(override.aes = list(color = c("green", "red","red"))))
+  }
 
   return(my.p)
 }
@@ -39,5 +70,9 @@ ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot 
 #filename1 = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN9_ALLsurveyLogisticSigR08/CASAL-MPDoutput.txt"
 #filename2 = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN10_ALLsurveyLogisticSingleSelectivity/CASAL-MPDoutput.txt"
 
+# Plot TS of SSB from a single model
+# ggplot.timeseries.of.SSB.or.YCS(filenames = filename1, models.labels = "model 1", quant2plot = "SSB", mgt.ref.points = TRUE)
+
+# Comparison between 2 estimates
 #ggplot.timeseries.of.SSB.or.YCS(filenames = c(filename1, filename2), models.labels = c("model 1", "model 2"), quant2plot = "YCS")
-#ggplot.timeseries.of.SSB.or.YCS(filenames = c(filename1, filename2), models.labels = c("model 1", "model 2"), quant2plot = "SSB")
+#ggplot.timeseries.of.SSB.or.YCS(filenames = c(filename1, filename2), models.labels = c("model 1", "model 2"), quant2plot = "SSB", mgt.ref.points = TRUE)
