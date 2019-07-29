@@ -86,5 +86,6 @@ p = ggplot(data = my.df) +
 #add.total = TRUE
 #x.axis.title = "B0"
 
-#print(FreeParProfile(filename, free.par = "initialization.B0", combine.penalties=TRUE, add.total=TRUE, x.axis.title="B0", legend.position = "left"))
+#
+print(FreeParProfile(filename, free.par = "initialization.B0", combine.penalties=TRUE, add.total=TRUE, x.axis.title="B0", legend.position = "left"))
 
