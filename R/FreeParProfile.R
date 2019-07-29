@@ -1,4 +1,4 @@
-FreeParProfile <- function(filename, free.par = "initialization.B0", comp = NA, combine.penalties = TRUE, add.total = FALSE,
+FreeParProfile <- function(filename, free.par = "initialization.B0", comp = NA, scaled = TRUE, combine.penalties = TRUE, add.total = FALSE,
                                  x.axis.title = "NA", prior.penalties.keywords = c("prior","cl"), legend.position = "right"){
 
 # filename: containing the profile data produce by the command: casal -p > filename
@@ -36,7 +36,7 @@ if(length(comp) > 1 | !is.na(comp[1])) {a <- a[comp,]; comp <- 1:nrow(a)}
     }
 
 # Scale the objective function
-a = t(apply(X = a, MARGIN = 1, FUN = function(x) (x - min(x)) / max(x - min(x))))
+if(scaled) a = t(apply(X = a, MARGIN = 1, FUN = function(x) (x - min(x)) / max(x - min(x))))
 
 # Convert the data format from wide to long
 for(i in 1:nrow(a)){
@@ -63,8 +63,10 @@ library(ggplot2)
 p = ggplot(data = my.df) +
     geom_line(mapping = aes(x = par.value, y = obj.fct, col = component, linetype = component)) +
     ylab("Scaled objective function") +
-    ylim(c(-0.1, 1)) +
-    theme_light() + theme(legend.position = legend.position)
+      theme_light() + theme(legend.position = legend.position)
+
+# limit y-axis up to 1 if scaled profile
+if(scaled)   p = p + ylim(c(-0.1, 1))
 
     # custom x-axis
     if(x.axis.title == "B0")
