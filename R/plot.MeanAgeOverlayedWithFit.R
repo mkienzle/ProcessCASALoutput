@@ -2,7 +2,7 @@
 # A function to plot timeseries of mean age overlayed with model prediction
 # ARGUMENT: obj1, obj2, ... are an element of the object created from a CASAL standard output file using the function extract.fits in the casal package
 
-plot.MeanAgeOverlayedWithFit <- function(obj1, obj2, obj3, obj4, model.label = 1:4, add.line = TRUE){
+plot.MeanAgeOverlayedWithFit <- function(obj1, obj2, obj3, obj4, model.label = 1:4, add.line = TRUE, legend.position = "right"){
 
   # Prepare the data
   if(missing(obj2)){
@@ -59,7 +59,7 @@ plot.MeanAgeOverlayedWithFit <- function(obj1, obj2, obj3, obj4, model.label = 1
           strip.text = element_text(size = 14),
           panel.grid.major = element_line(size = 1),
           panel.grid.minor = element_line(size = 0.5)) +
-    theme_light()
+    theme_light()  + theme(legend.position = legend.position)
 
 
   if(add.line == TRUE) p <- p + geom_line(data = subset(obj.df.mean, ! (type %in% "observation")), aes(x = year, y = mean.m, col = type), lwd = 1)
@@ -67,5 +67,9 @@ plot.MeanAgeOverlayedWithFit <- function(obj1, obj2, obj3, obj4, model.label = 1
 }
 
 #filename1 = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN9_ALLsurveyLogisticSigR08/CASAL-MPDoutput.txt"
-#plot.MeanAgeOverlayedWithFit(comb.obj(extract.fits(filename1)$wcsiTRLagePre2005, extract.fits(filename1)$wcsiTRLageFrom2005))
-#plot.MeanAgeOverlayedWithFit(comb.obj(extract.fits(filename1)$wcsiTRLagePre2005, extract.fits(filename1)$wcsiTRLageFrom2005), add.line = FALSE)
+#filename2 = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN10_ALLsurveyLogisticSingleSelectivity/CASAL-MPDoutput.txt"
+
+#plot.MeanAgeOverlayedWithFit(comb.obj(extract.fits(filename2)$wcsiTRLagePre2005, extract.fits(filename2)$wcsiTRLageFrom2005))
+#plot.MeanAgeOverlayedWithFit(obj1 = comb.obj(extract.fits(filename1)$wcsiTRLagePre2005, extract.fits(filename1)$wcsiTRLageFrom2005),
+#                             obj2 = extract.fits(filename2)$wcsiTRLage, model.label = c("Two selectivity", "One selectivity"), add.line = FALSE)
+
