@@ -1,6 +1,6 @@
 #################################################################################################################################
 ## A function to plot the selectivities
-plot.CompareChangeInSelectivities <- function(filenames, path, label = seq(1, length(filenames)), keep = "all"){
+plot.CompareChangeInSelectivities <- function(filenames, path, label = seq(1, length(filenames)), keep = "all", legend.position = "top"){
 
   # Load the data
   df <- FromMultipleSelectivityOutputsToDF(filenames, path, label)
@@ -22,7 +22,7 @@ plot.CompareChangeInSelectivities <- function(filenames, path, label = seq(1, le
           axis.text = element_text(size = 14),
           strip.text = element_text(size = 14),
           panel.grid.major = element_line(size = 1),
-          panel.grid.minor = element_line(size = 0.5))
+          panel.grid.minor = element_line(size = 0.5)) + theme_light() + theme(legend.position = legend.position)
 
 
   return(p)
