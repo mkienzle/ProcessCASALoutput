@@ -2,7 +2,7 @@
 # A function to plot the age frequency distribution in samples overlayed with model prediction
 # ARGUMENT: obj is an element of the object created from a CASAL standard output file using the function extract.fits in the casal package
 
-plot.PropAtAgeOverlayedWithFit <- function(obj, obj2, obj3, obj4, model.label = 1:4){
+plot.PropAtAgeOverlayedWithFit <- function(obj, obj2, obj3, obj4, model.label = 1:4, legend.location = "top"){
 
   library(ggplot2)
   library(scales)
@@ -22,7 +22,7 @@ plot.PropAtAgeOverlayedWithFit <- function(obj, obj2, obj3, obj4, model.label = 
       scale_colour_manual(name = ' ', values=c("Predictions" = hue_pal()(1), "Observations" = "black")) +
       theme(legend.position = "top", axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14),
             panel.grid.major = element_line(size = 1.1),
-            panel.grid.minor = element_line(size = 0.5)) + theme_light()
+            panel.grid.minor = element_line(size = 0.5)) + theme_light() + theme(legend.location = legend.location)
 
     return(p1)
   } # End working only with obj
