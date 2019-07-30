@@ -22,7 +22,7 @@ plot.PropAtAgeOverlayedWithFit <- function(obj, obj2, obj3, obj4, model.label = 
       scale_colour_manual(name = ' ', values=c("Predictions" = hue_pal()(1), "Observations" = "black")) +
       theme(legend.position = "top", axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14),
             panel.grid.major = element_line(size = 1.1),
-            panel.grid.minor = element_line(size = 0.5))
+            panel.grid.minor = element_line(size = 0.5)) + theme_light()
 
     return(p1)
   } # End working only with obj
