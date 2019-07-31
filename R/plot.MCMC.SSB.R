@@ -21,8 +21,8 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
 
   # Plot
   my.p = ggplot(data = SSB.data, aes(x = year, y = value)) +
-    stat_summary(geom = "line", fun.y = median, col = "lightgrey", size = 1.2) +
-    stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.3) +
+    stat_summary(geom = "line", fun.y = median, col = "black", size = 1.2) +
+    stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.1, lty = 3) +
     xlab("") + ylab("SSB (t)") +
     theme_light()
 
@@ -38,11 +38,11 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
     lab.x.axis = 1980
 
     # create a data.frame with label info
-    lbl.df = data.frame(x = lab.x.axis, y = c(0.1, 0.2, 0.4, 1) * median.B0, lbl = c("10% B0", "20% B0", "40% B0", "100% B0"))
+    lbl.df = data.frame(x = lab.x.axis, y = c(0.1, 0.2, 0.4) * median.B0, lbl = c("10% B0", "20% B0", "40% B0"), lty = c(1, 2, 3))
 
     # Add lines to plot
     my.p <- my.p +
-      geom_hline(aes(yintercept = y), data = lbl.df, lwd = 1, lty = 2, col = "black", show.legend = FALSE) +
+      geom_hline(aes(yintercept = y), data = lbl.df, lwd = 1, lty = lbl.df$lty, col = "red", show.legend = FALSE) +
       geom_label( mapping = aes(x = x, y = y, label = lbl), data = lbl.df, fill = "white")
 
   }
@@ -52,3 +52,7 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
 
 
 }
+
+
+# test
+# plot.MCMC.SSB("quant.v1", "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN8_ALLsurveyLogistic")
