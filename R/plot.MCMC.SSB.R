@@ -1,4 +1,4 @@
-plot.MCMC.SSB <- function(mcmcfilename, path){
+plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
 
   # Get all the MCMC the data
   library(tidyverse)
