@@ -1,10 +1,16 @@
-plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
+plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.label.x.axis = NA){
 
-  # Get all the MCMC the data
+  # ARGUMENTS
+  # mcmcfilename
+  # path
+  # mgt.ref.points: if TRUE, adds horizontal lines representing 3 fraction of Bo
+  # ref.points.label.x.axis the location on the x-axis of the label describing the reference point
+
+  # Get all the MCMC data
   library(tidyverse)
   mcmc.data = as_tibble(extract.mcmc.To.LongFormat(mcmcfilename = mcmcfilename, path = path))
 
-  # Subset the data for string that look like SSB[2017]
+  # Subset the data for string that look like "SSB" with year in square brackets, for example SSB[1997]
   mcmc.SSB.data = mcmc.data %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
 
   # Extract year from the label(new.df = mcmc.SSB.data %>% dplyr::mutate(year =  as.numeric(str_extract(key, "[0-9]{4}"))))
@@ -18,7 +24,6 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
     return(dat)
   }
 
-
   # Plot
   my.p = ggplot(data = SSB.data, aes(x = year, y = value)) +
     stat_summary(geom = "line", fun.y = median, col = "black", size = 1.2) +
@@ -26,16 +31,14 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE){
     xlab("") + ylab("SSB (t)") +
     theme_light()
 
-  #plot(my.p)
-
-  # Add managment reference point
+  # Add horizontal lines representing managment reference points
   if(mgt.ref.points){
 
     # Calculate virgin biomass
     median.B0 = as.numeric(mcmc.data %>% filter(grepl("B0", key)) %>% summarize(median(value)))
 
     # location of the labels on the x-axis
-    lab.x.axis = 1980
+    if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = label.x.axis}
 
     # create a data.frame with label info
     lbl.df = data.frame(x = lab.x.axis, y = c(0.1, 0.2, 0.4) * median.B0, lbl = c("10% B0", "20% B0", "40% B0"), lty = c(1, 2, 3))
