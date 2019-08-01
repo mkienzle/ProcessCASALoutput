@@ -46,7 +46,7 @@ plot.MCMC.trueYCS <- function(mcmcfilenames, path, model.labels){
   }
   # Plot
   my.p = ggplot(data = YCS.data) +
-    geom_boxplot(aes(x = year, y = value, col = model)) +
+    geom_boxplot(aes(x = year, y = value, col = model, fill = model)) +
     # stat_summary(geom = "line", fun.y = median, col = "black", size = 1.2) +
     # stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.1, lty = 3) +
     xlab("") + ylab("Year Class Strength (true_YCS)") +
