@@ -12,8 +12,9 @@ extract.mcmc.To.LongFormat = function(mcmcfilename, path){
 
   # Convert data input from wide to long format
   library(tidyr)
-  mcmc.InputValues.long = gather(data = as.data.frame(mcmc.InputValues))
+  mcmc.InputValues.long = as_tibble(gather(data = as.data.frame(mcmc.InputValues)))
 
   return(mcmc.InputValues.long)
 }
 
+# mcmcfilename = "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN8_ALLsurveyLogistic/quant.v1"; path = ""
