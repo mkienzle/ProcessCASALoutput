@@ -1,25 +1,25 @@
 \name{plot.MCMC.SSB}
 \alias{plot.MCMC.SSB}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
+\title{A function to plot a time series of Spawning Stock Biomass (SSB) with 95\% confidence intervals estimated by Monte Carlo Markov Chain (MCMC).
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+TO DO}
 \usage{
-plot.MCMC.SSB(x)
+plot.MCMC.SSB(filename ="", path = "", mgt.ref.points = TRUE, ref.points.label.x.axis = 1975)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
+TODO
 %%     ~~Describe \code{x} here~~
 }
 }
 \details{
+TODO
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
+TODO
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
@@ -27,18 +27,22 @@ plot.MCMC.SSB(x)
 %% ...
 }
 \references{
+TODO
 %% ~put references to the literature/web site here ~
 }
 \author{
+TODO
 %%  ~~who you are~~
 }
 \note{
+TODO
 %%  ~~further notes~~
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
+TODO
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
