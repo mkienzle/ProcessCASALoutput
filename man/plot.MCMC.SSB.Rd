@@ -46,7 +46,7 @@ TODO
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-plot.MCMC.SSB(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
+plot.MCMC.SSB(mcmcfilename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
               path = "",
               mgt.ref.points = TRUE,
               ref.points.label.x.axis = 1975)
