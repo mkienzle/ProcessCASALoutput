@@ -40,4 +40,4 @@ plot.MCMC.selectivity <- function(mcmcfilename, path, selectivity.label){
 
 
 # test
-# plot.MCMC.SSB("quant.v1", "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN8_ALLsurveyLogistic")
+# plot.MCMC.selectivity("quant.v1", "C:/Users/kienzlemj/OneDrive - NIWA/Templates/Assessment XYZ/CASAL/RUN8_ALLsurveyLogistic")
