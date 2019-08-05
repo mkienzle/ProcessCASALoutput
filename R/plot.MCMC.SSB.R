@@ -38,7 +38,7 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
     median.B0 = as.numeric(mcmc.data %>% filter(grepl("B0", key)) %>% summarize(median(value)))
 
     # location of the labels on the x-axis
-    if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = label.x.axis}
+    if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = ref.points.label.x.axis}
 
     # create a data.frame with label info
     lbl.df = data.frame(x = lab.x.axis, y = c(0.1, 0.2, 0.4) * median.B0, lbl = c("10% B0", "20% B0", "40% B0"), lty = c(1, 2, 3))
