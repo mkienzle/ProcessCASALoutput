@@ -49,7 +49,7 @@ TODO
 plot.MCMC.SSB(mcmcfilename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
               path = "",
               mgt.ref.points = TRUE,
-              ref.points.label.x.axis = 1975)
+              ref.points.label.x.axis = 1978)
 
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,

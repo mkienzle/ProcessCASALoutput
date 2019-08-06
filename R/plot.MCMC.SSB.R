@@ -6,12 +6,30 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
   # mgt.ref.points: if TRUE, adds horizontal lines representing 3 fraction of Bo
   # ref.points.label.x.axis the location on the x-axis of the label describing the reference point
 
+  #########################################################################################################################
   # Get all the MCMC data
+
   library(tidyverse)
-  mcmc.data = as_tibble(extract.mcmc.To.LongFormat(mcmcfilename = mcmcfilename, path = path))
+  #mcmc.data = as_tibble(extract.mcmc.To.LongFormat(mcmcfilename = mcmcfilename, path = path))
+
+  # Load the MCMC file
+  library(casal)
+  mcmc.InputValues = extract.mcmc(samples =  mcmcfilename, path = path)
+
+  # Reset the class of the object to matrix to allow manipulation
+  class(mcmc.InputValues) <- "matrix"
+
+  # Get only columns containing SSB
+  mcmc.InputValues.subset = mcmc.InputValues[, grep("SSB", dimnames(mcmc.InputValues)[[2]])]
+  rm(mcmc.InputValues)
+
+  # Convert data input from wide to long format
+  library(tidyr)
+  mcmc.InputValues.long = as_tibble(gather(data = as.data.frame(mcmc.InputValues.subset)))
 
   # Subset the data for string that look like "SSB" with year in square brackets, for example SSB[1997]
   mcmc.SSB.data = mcmc.data %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
+  #########################################################################################################################
 
   # Extract year from the label(new.df = mcmc.SSB.data %>% dplyr::mutate(year =  as.numeric(str_extract(key, "[0-9]{4}"))))
   SSB.data = mcmc.SSB.data %>% dplyr::mutate(year =  as.numeric(str_extract(key, "[0-9]{4}")))
