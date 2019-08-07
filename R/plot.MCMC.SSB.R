@@ -21,14 +21,15 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
 
   # Get only columns containing SSB
   mcmc.InputValues.subset = mcmc.InputValues[, grep("SSB", dimnames(mcmc.InputValues)[[2]])]
-  rm(mcmc.InputValues)
+  #rm(mcmc.InputValues)
 
   # Convert data input from wide to long format
   library(tidyr)
   mcmc.InputValues.long = as_tibble(gather(data = as.data.frame(mcmc.InputValues.subset)))
 
   # Subset the data for string that look like "SSB" with year in square brackets, for example SSB[1997]
-  mcmc.SSB.data = mcmc.data %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
+  #mcmc.SSB.data = mcmc.data %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
+  mcmc.SSB.data = mcmc.InputValues.long %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
   #########################################################################################################################
 
   # Extract year from the label(new.df = mcmc.SSB.data %>% dplyr::mutate(year =  as.numeric(str_extract(key, "[0-9]{4}"))))
@@ -53,8 +54,9 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
   if(mgt.ref.points){
 
     # Calculate virgin biomass
-    median.B0 = as.numeric(mcmc.data %>% filter(grepl("B0", key)) %>% summarize(median(value)))
-
+    #median.B0 = as.numeric(mcmc.InputValues %>% filter(grepl("B0", key)) %>% summarize(median(value)))
+    median.B0 = median(mcmc.InputValues[, grep("B0", dimnames(mcmc.InputValues)[[2]])])
+      
     # location of the labels on the x-axis
     if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = ref.points.label.x.axis}
 
@@ -69,8 +71,6 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
   }
 
   return(my.p)
-
-
 
 }
 
