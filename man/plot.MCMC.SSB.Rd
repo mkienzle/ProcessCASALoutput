@@ -46,10 +46,16 @@ TODO
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+
+# Plot MCMC
 plot.MCMC.SSB(mcmcfilename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
               path = "",
               mgt.ref.points = TRUE,
               ref.points.label.x.axis = 1978)
+
+# Plot MCMC projections
+plot.MCMC.SSB(mcmcfilename = system.file("extdata", "proj-FC500YCSR2006-2015.dat", package = "ProcessCASALoutput"),
+              projection.from = 2018)
 
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
