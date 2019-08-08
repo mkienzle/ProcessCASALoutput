@@ -1,11 +1,15 @@
-plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.label.x.axis = NA){
+plot.MCMC.SSB <- function(mcmcfilename,
+                          path,
+                          mgt.ref.points = TRUE,
+                          ref.points.label.x.axis = NA,
+                          projection.from = NA){
 
   # ARGUMENTS
   # mcmcfilename
   # path
   # mgt.ref.points: if TRUE, adds horizontal lines representing 3 fraction of Bo
   # ref.points.label.x.axis the location on the x-axis of the label describing the reference point
-
+  # projection.from: a numeric giving the year from when the projections start
   #########################################################################################################################
   # Get all the MCMC data
 
@@ -56,7 +60,7 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
     # Calculate virgin biomass
     #median.B0 = as.numeric(mcmc.InputValues %>% filter(grepl("B0", key)) %>% summarize(median(value)))
     median.B0 = median(mcmc.InputValues[, grep("B0", dimnames(mcmc.InputValues)[[2]])])
-      
+
     # location of the labels on the x-axis
     if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = ref.points.label.x.axis}
 
@@ -68,6 +72,14 @@ plot.MCMC.SSB <- function(mcmcfilename, path, mgt.ref.points = TRUE, ref.points.
       geom_hline(aes(yintercept = y), data = lbl.df, lwd = 1, lty = lbl.df$lty, col = "red", show.legend = FALSE) +
       geom_label( mapping = aes(x = x, y = y, label = lbl), data = lbl.df, fill = "white")
 
+  }
+
+  # If data are from projection, colour the range of years corresponding to the projection
+  if(!is.na(projection.from)){
+    my.p = my.p +
+      stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.5, lty = 3,
+      data = subset(SSB.data, year >= projection.from), aes(x = year, y = value), colour = "yellow", fill = "yellow") +
+      stat_summary(geom = "line", fun.y = median, col = "black", size = 1.2)
   }
 
   return(my.p)
