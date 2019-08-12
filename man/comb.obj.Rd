@@ -49,8 +49,8 @@ TODO
 
 # combine the fit to 2 fishery dataset (one with selectivity until 2005 and one after 2005)
 library(casal)
-comb.obj(obj1 = extract.fits(system.file("extdata", "model2WithSel/CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
-              obj2 = extract.fits(system.file("extdata", "model2WithSel/CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLageFrom2005)
+comb.obj(obj1 = extract.fits(system.file("extdata", "modelWith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
+              obj2 = extract.fits(system.file("extdata", "modelwith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLageFrom2005)
 
 
 ##---- Should be DIRECTLY executable !! ----
