@@ -49,19 +49,11 @@ TODO
 
 # combine the fit to 2 fishery dataset (one with selectivity until 2005 and one after 2005)
 library(casal)
-comb.obj(obj1 = extract.fits(system.file("extdata", "modelWith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
+combined.obj = comb.obj(obj1 = extract.fits(system.file("extdata", "modelWith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
               obj2 = extract.fits(system.file("extdata", "modelwith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLageFrom2005)
 
 
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x)
-{
-  }
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
