@@ -51,7 +51,7 @@ TODO
 library(casal)
 combined.obj = comb.obj(obj1 = extract.fits(system.file("extdata", "modelWith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
               obj2 = extract.fits(system.file("extdata", "modelwith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLageFrom2005)
-
+}
 
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
