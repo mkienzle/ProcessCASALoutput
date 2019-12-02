@@ -61,7 +61,7 @@ if(add.total) my.df$component = relevel(my.df$component, ref = "Total")
 library(ggplot2)
 
 p = ggplot(data = my.df) +
-    geom_line(mapping = aes(x = par.value, y = obj.fct, col = component, linetype = component)) +
+    geom_line(mapping = aes(x = par.value, y = obj.fct, col = component, linetype = component), lwd = 1.2) +
     ylab("Scaled objective function") +
       theme_light() + theme(legend.position = legend.position)
 
