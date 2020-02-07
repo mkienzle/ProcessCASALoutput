@@ -8,13 +8,12 @@ compare.multiple.objective.functions <- function(filenames, models.names){
   for(file.nb in 1:length(filenames)){
 
     if(file.nb == 1) {
-                my.df = data.frame( value = extract.multiple.objective.functions(filenames[file.nb]), model.name = models.names[file.nb])
+                tmp.data = extract.multiple.objective.functions(filenames[file.nb])
+                my.df = data.frame( loglik.comp = dimnames(tmp.data)[[1]], value = tmp.data, model.name = models.names[file.nb])
                 } else {
-                my.df = rbind(my.df, data.frame( value = extract.multiple.objective.functions(filenames[file.nb]), model.name = models.names[file.nb]))}
+                tmp.data = extract.multiple.objective.functions(filenames[file.nb])
+                my.df = rbind(my.df, data.frame( loglik.comp = dimnames(tmp.data)[[1]], value = tmp.data, model.name = models.names[file.nb]))}
     }
-
-  # Make dimnames into a variable
-  my.df = data.frame(my.df, loglik.comp = dimnames(my.df)[[1]])
 
   # convert from long to wide format
   library(tidyverse)
@@ -27,9 +26,9 @@ compare.multiple.objective.functions <- function(filenames, models.names){
 
 # Example
 
-#dummy = compare.multiple.objective.functions(
-#  filenames = c("C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_comb_v44/CASAL-MPDoutput.txt",
-#                "C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_logn_v44/CASAL-MPDoutput.txt"),
-#  models.names = c("Model A", "Model B")
-#  )
+dummy = compare.multiple.objective.functions(
+  filenames = c("C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_comb_v44/CASAL-MPDoutput.txt",
+                "C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_logn_v44/CASAL-MPDoutput.txt"),
+  models.names = c("Model A", "Model B")
+  )
 
