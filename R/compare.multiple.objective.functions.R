@@ -21,7 +21,7 @@ compare.multiple.objective.functions <- function(filenames, models.names){
 
   fct.result = as_tibble(my.df) %>% spread(model.name, value)
   fct.result %>% print(n=100)
-  print("Total"); dummy %>% summarise_if(is.numeric, funs(sum)) %>% print(n=10)
+  print("Total"); fct.result %>% summarise_if(is.numeric, funs(sum)) %>% print(n=10)
 
   return(fct.result)
 }
