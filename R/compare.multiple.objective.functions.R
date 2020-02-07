@@ -26,9 +26,9 @@ compare.multiple.objective.functions <- function(filenames, models.names){
 
 # Example
 
-dummy = compare.multiple.objective.functions(
-  filenames = c("C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_comb_v44/CASAL-MPDoutput.txt",
-                "C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_logn_v44/CASAL-MPDoutput.txt"),
-  models.names = c("Model A", "Model B")
-  )
+#dummy = compare.multiple.objective.functions(
+#  filenames = c("C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_comb_v44/CASAL-MPDoutput.txt",
+#                "C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_logn_v44/CASAL-MPDoutput.txt"),
+#  models.names = c("Model A", "Model B")
+#  )
 
