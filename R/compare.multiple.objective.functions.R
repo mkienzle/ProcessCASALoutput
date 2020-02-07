@@ -1,4 +1,4 @@
-compare.multiple.objective.functions = function(filenames, models.names){
+compare.multiple.objective.functions <- function(filenames, models.names){
 
   # PURPOSE create a table that compares the likelihood value of each components
 
@@ -25,6 +25,7 @@ compare.multiple.objective.functions = function(filenames, models.names){
   return(fct.result)
 }
 
+# Example
 
 #dummy = compare.multiple.objective.functions(
 #  filenames = c("C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/CASAL/LIN7_comb_v44/CASAL-MPDoutput.txt",
