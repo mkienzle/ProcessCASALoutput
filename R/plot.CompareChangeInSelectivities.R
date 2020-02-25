@@ -17,7 +17,7 @@ plot.CompareChangeInSelectivities <- function(filenames, path, label = seq(1, le
     geom_line( aes(linetype = Model), size = 1) +
     geom_point( size = 2) +
     xlab("Age group") + ylab("Proportion retained") +
-    scale_x_continuous(minor_breaks = seq(0, 50, 2)) +
+    scale_x_continuous(breaks = seq(0, 50, 2)) +
     theme(axis.title.y = element_text(size = rel(1.8)),
           axis.text = element_text(size = 14),
           strip.text = element_text(size = 14),
