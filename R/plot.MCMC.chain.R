@@ -36,7 +36,7 @@ plot.MCMC.chain <- function(filename,
           axis.text = element_text(size = 14),
           strip.text = element_text(size = 14),
           panel.grid.major = element_line(size = 1),
-          panel.grid.minor = element_line(size = 0.5)) + theme_light() + ylab(var)
+          panel.grid.minor = element_line(size = 0.5)) + theme_light()
 
   return(p)
   #return(0)
