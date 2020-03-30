@@ -28,7 +28,7 @@ plot.MCMC.chain <- function(filename,
 
   p <- ggplot(df, aes(x = x, y = eval(parse(text = var)))) + geom_line() +
     stat_summary(fun.y=mean, aes(x = 1, yintercept = ..y..), geom = "hline", colour="red", lwd = 1.8, lty = 2) +
-    stat_smooth(method = "loess", formula = y ~ x, span = 0.05, size = 1, level = 0, lwd = 2.5, col = "orange") +
+    stat_smooth(method = "loess", formula = y ~ x, span = 0.1, size = 1, level = 0, lwd = 2.5, col = "blue") +
     xlab("sample") + ylab(parse(text = y.axis.label)) +
     theme(legend.position = "none",
           axis.title.x = element_text(size = rel(1.8)),
