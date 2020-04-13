@@ -34,7 +34,8 @@ plot.MCMC.SSB <- function(mcmcfilename,
 
   # Subset the data for string that look like "SSB" with year in square brackets, for example SSB[1997]
   #mcmc.SSB.data = mcmc.data %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
-  mcmc.SSB.data = mcmc.InputValues.long %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
+  #mcmc.SSB.data = mcmc.InputValues.long %>% filter(grepl("SSB\\[[0-9]{4}\\]", key))
+  mcmc.SSB.data = mcmc.InputValues.long %>% filter(grepl("SSB.[0-9]{4}", key))
   #########################################################################################################################
 
   # Extract year from the label(new.df = mcmc.SSB.data %>% dplyr::mutate(year =  as.numeric(str_extract(key, "[0-9]{4}"))))
