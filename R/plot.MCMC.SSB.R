@@ -60,7 +60,7 @@ plot.MCMC.SSB <- function(mcmcfilename,
 
     # Calculate virgin biomass
     #median.B0 = as.numeric(mcmc.InputValues %>% filter(grepl("B0", key)) %>% summarize(median(value)))
-    median.B0 = median(mcmc.InputValues[, grep("B0", dimnames(mcmc.InputValues)[[2]])])
+    median.B0 = median(mcmc.InputValues[, grep("^B0", dimnames(mcmc.InputValues)[[2]])])
 
     # location of the labels on the x-axis
     if(is.na(ref.points.label.x.axis)){lab.x.axis = 1980} else{lab.x.axis = ref.points.label.x.axis}
