@@ -22,7 +22,7 @@ plot.MCMC.SSB <- function(mcmcfilename,
   mcmc.InputValues = read.table( file = paste(path, mcmcfilename, sep="/"), skip = 8, header = TRUE)
 
   # Reset the class of the object to matrix to allow manipulation
-  class(mcmc.InputValues) <- "matrix"
+  #class(mcmc.InputValues) <- "matrix"
 
   # Get only columns containing SSB
   mcmc.InputValues.subset = mcmc.InputValues[, grep("SSB", dimnames(mcmc.InputValues)[[2]])]
