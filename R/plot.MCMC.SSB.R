@@ -17,8 +17,9 @@ plot.MCMC.SSB <- function(mcmcfilename,
   #mcmc.data = as_tibble(extract.mcmc.To.LongFormat(mcmcfilename = mcmcfilename, path = path))
 
   # Load the MCMC file
-  library(casal)
-  mcmc.InputValues = extract.mcmc(samples =  mcmcfilename, path = path)
+  #library(casal)
+  #mcmc.InputValues = extract.mcmc(samples =  mcmcfilename, path = path)
+  mcmc.InputValues = read.table( file = paste(path, mcmcfilename, sep="/"), skip = 8, header = TRUE)
 
   # Reset the class of the object to matrix to allow manipulation
   class(mcmc.InputValues) <- "matrix"
