@@ -31,7 +31,7 @@ ggplot.timeseries.of.SSB.or.YCS = function(filenames, models.labels, quant2plot 
   library(ggplot2)
   my.p = ggplot(data = my.df) +
   geom_line(mapping = aes(x = year, y = eval(parse(text = name.in.df)), col = model), size = 1.2) +
-    xlab("") + theme_light() + ylab(quant2plot) # modified here
+    xlab("") + theme_light() + ylab(quant2plot) + expand_limits(y = 0)# modified here
 
 
   if(quant2plot == "SSB") my.p = my.p + ylab("SSB (t)")
