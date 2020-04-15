@@ -42,7 +42,8 @@ ggplot.timeseries.of.SSB.relativeTo.B0 = function(filenames, models.labels, mgt.
   my.p = ggplot(data = my.df) +
     geom_line(mapping = aes(x = year, y = SSB.div.B0, col = model), size = 1.2) +
     scale_y_continuous(breaks = seq(0,1, 0.2), minor_breaks = seq(0,1, 0.1), labels = scales::percent) +
-    xlab("") + theme_light() + ylab(expression(SSB/B[0])) + expand_limits(y = 0)# modified here
+    xlab("") + theme_light() + ylab(expression(SSB/B[0])) + expand_limits(y = 0) + # modified here
+    theme(axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14))
 
 
   #if(quant2plot == "SSB") my.p = my.p + ylab("SSB (t)")
