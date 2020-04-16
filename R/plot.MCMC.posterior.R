@@ -10,21 +10,37 @@ plot.MCMC.posterior <- function(filename,
                                 path = "",
                                 label = "NA",
                                 var = "NA",
-                                x.axis.label = "NA"){
+                                x.axis.label = "NA",
+                                xlim = c(0,4),
+                                lognormal.prior = c(NA,NA)){
 
-  df <- data.frame(Model = as.factor(label[1]), read.table(paste(path, filename, sep=""), header = TRUE, skip = 8))
-  #
-  # Plot the posterior distribution obtained by MCMC
+  # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
+  df <- data.frame(Distribution = as.factor(label[1]), read.table(paste(path, filename, sep=""), header = TRUE, skip = 8))
 
-  p <- ggplot(df, aes(x=eval(parse(text = var)), fill = Model)) + geom_density(alpha=.3) +
-    xlab(parse(text = x.axis.label)) +
-    theme(axis.title.y = element_text(size = rel(1.8)),
-          axis.text = element_text(size = 14),
-          strip.text = element_text(size = 14),
-          panel.grid.major = element_line(size = 1),
-          panel.grid.minor = element_line(size = 0.5)) + theme_light()
+  # If the user wants to plot the prior
+  if(! is.na(lognormal.prior[1])){
+
+    #print(head(df))
+
+    # Generate a random sample from the theoretical distribution
+    # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
+    x = rlnorm(1e5, meanlog = lognormal.prior[1], sdlog = lognormal.prior[2])
+    tmp.df = data.frame(Distribution = "Prior", x = x)
+    dimnames(tmp.df)[[2]] = c("Distribution", var)
+
+    #print(head(tmp.df))
+    df = rbind(df[, c("Distribution", var)], tmp.df)
+
+  }
+
+
+  p <- ggplot(df, aes(x=eval(parse(text = var)), fill = Distribution)) + geom_density(alpha=.5) +
+    xlab(x.axis.label) + scale_x_continuous(breaks = seq(xlim[1], xlim[2], 0.4), minor_breaks = seq(xlim[1], xlim[2], 0.2), limits = c(xlim[1], xlim[2])) +
+    theme_light() +
+    theme(axis.title.x = element_text(size = rel(1.8)), axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14))
+
+  p = p + theme(legend.position = "bottom")
 
 
   return(p)
-  #return(0)
 }
