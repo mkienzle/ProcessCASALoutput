@@ -54,7 +54,7 @@ plot.MCMC.SSB <- function(mcmcfilename,
     stat_summary(geom = "line", fun.y = median, col = "black", size = 1.2) +
     stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.1, lty = 3) +
     xlab("") + ylab("SSB (t)") +
-    theme_light()
+    theme_light() + expand_limits(y = 0)
 
   # Add horizontal lines representing managment reference points
   if(mgt.ref.points){
