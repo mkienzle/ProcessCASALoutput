@@ -12,11 +12,11 @@ plot.multiple.MCMC.SSB <- function(mcmcfilenames,
   # mgt.ref.points: if TRUE, adds horizontal lines representing 3 fraction of Bo
   # ref.points.label.x.axis the location on the x-axis of the label describing the reference point
   # projection.from: a numeric giving the year from when the projections start
+
   #########################################################################################################################
   # Get all the MCMC data
 
   library(tidyverse)
-  #mcmc.data = as_tibble(extract.mcmc.To.LongFormat(mcmcfilename = mcmcfilename, path = path))
 
   # Load the MCMC files
   for(file.nb in 1:length(mcmcfilenames)){
@@ -49,8 +49,6 @@ plot.multiple.MCMC.SSB <- function(mcmcfilenames,
       tmp.mcmc.SSB.data = tmp.mcmc.InputValues.long %>% filter(grepl("SSB.[0-9]{4}", key))
       tmp.mcmc.SSB.data = data.frame(Projections = labels[file.nb], tmp.mcmc.SSB.data)
 
-      #print(head(mcmc.SSB.data))
-      #print(head(tmp.mcmc.SSB.data))
       mcmc.SSB.data = rbind(mcmc.SSB.data, tmp.mcmc.SSB.data)
 
     }
@@ -71,30 +69,18 @@ plot.multiple.MCMC.SSB <- function(mcmcfilenames,
     return(dat)
   }
 
-  median.by.type = function(df){
-
-    tmp.df = with(df, aggregate(cbind("y"=value), by = list(x = year, labels = labels), median))
-    return(tmp.df$y)
-  }
-
-  #print(head(median.by.type(SSB.data)))
-  print(table(SSB.data$labels))
   # Plot
   my.p = ggplot(data = SSB.data, mapping = aes(x = year, y = value, colour = Projections)) +
     stat_summary(geom = "line", fun.y = median, size = 1.2, col = "black",
                  data = subset(SSB.data, year <= projection.from)) +
-    #stat_summary(data = SSB.data, mapping = aes(x = year, y = value, group = labels, col = labels),
-    #             geom = "line", fun.y = median.by.type, size = 1.2)
-    #stat_summary(geom = "line", fun.y = median.by.type, col = "black", size = 1.2) #+
     stat_summary(geom = "ribbon", fun.data = mean_cl_quantile, alpha = 0.1, lty = 3) +
     xlab("") + ylab("SSB (t)") +
-    theme_light() + expand_limits(y = 0) + theme(legend.position = "bottom")
+    theme_light() + expand_limits(y = 0) + theme(legend.position = "bottom", axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14))
 
   # Add horizontal lines representing managment reference points
   if(mgt.ref.points){
 
     # Calculate virgin biomass from the first file (implicit is that all files have the same B0)
-    #median.B0 = as.numeric(mcmc.InputValues %>% filter(grepl("B0", key)) %>% summarize(median(value)))
     median.B0 = median(mcmc.InputValues[, grep("^B0", dimnames(mcmc.InputValues)[[2]])])
 
     # location of the labels on the x-axis
