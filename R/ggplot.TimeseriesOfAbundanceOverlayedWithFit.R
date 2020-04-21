@@ -35,18 +35,19 @@ ggplot.TimeseriesOfAbundanceOverlayedWithFit <- function(datafile = NA, path = N
     geom_errorbar(data = df, mapping = aes(x = year, ymin = mean - 1.96 * sd, ymax = mean + 1.96 * sd), width = 0.75, col = "#F8766D") +
     ggtitle(title) + xlab("") + ylab(y.axis.lab) +
     #    xlab("") + ylab(parse(text = expression(paste(y.axis.lab, plain() %+-% plain() , " 95% CI")))) +
+    theme_light() +
     theme(plot.title = element_text(hjust = 0.5),
           axis.text=element_text(size=16),
           axis.title=element_text(size=18,face="bold"),
           legend.title=element_text(size=18),
-          legend.text=element_text(size=16)) +
+          legend.text=element_text(size=16),
+          panel.grid.minor = element_line(size = 0.5), panel.grid.major = element_line(size = 1)) +
     scale_x_continuous(breaks = seq(xlab[1], xlab[2], by = x.axis.step), limits = c(xlab[1]-1, xlab[2]+1), minor_breaks = seq(xlab[1] - 1, xlab[2] + 1)) +
-    theme(panel.grid.minor = element_line(size = 0.5), panel.grid.major = element_line(size = 1)) +
     scale_y_continuous(breaks = seq(ylim[1], ylim[2], by = increment), limits = ylim)
 
   if(add.line) p <- p +  geom_line(data = df, aes(x = year, y = model), col = "#00BFC4", lwd = 1)
 
-  p = p + theme_light()
+  #p = p + theme_light()
   # Plot
   # p <- ggplot(df, aes(x = year, y = mean)) +
   #   scale_x_continuous(minor_breaks = seq(1990,2020)) + scale_y_continuous(breaks = seq(0, 1.2 * max(df$mean), by = 1e2), limits = c(0, 1.2 * max(df$mean))) +
