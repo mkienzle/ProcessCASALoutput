@@ -39,10 +39,9 @@ ggplot.TimeseriesOfAbundanceOverlayedWithFit <- function(datafile = NA, path = N
           axis.text=element_text(size=16),
           axis.title=element_text(size=18,face="bold"),
           legend.title=element_text(size=18),
-          legend.text=element_text(size=16),
-          panel.grid.major = element_line(size = 1),
-          panel.grid.minor = element_line(size = 0.5)) +
-    scale_x_continuous(breaks = seq(xlab[1], xlab[2], by = x.axis.step), limits = c(xlab[1]-1, xlab[2]+1), minor_breaks = seq(1990,2020)) +
+          legend.text=element_text(size=16)) +
+    scale_x_continuous(breaks = seq(xlab[1], xlab[2], by = x.axis.step), limits = c(xlab[1]-1, xlab[2]+1), minor_breaks = seq(xlab[1] - 1, xlab[2] + 1)) +
+    theme(panel.grid.minor = element_line(size = 0.5), panel.grid.major = element_line(size = 1)) +
     scale_y_continuous(breaks = seq(ylim[1], ylim[2], by = increment), limits = ylim)
 
   if(add.line) p <- p +  geom_line(data = df, aes(x = year, y = model), col = "#00BFC4", lwd = 1)
