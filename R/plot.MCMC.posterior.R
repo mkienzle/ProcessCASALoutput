@@ -33,7 +33,7 @@ plot.MCMC.posterior <- function(filename,
 
   }
 
-
+  library(ggplot2)
   p <- ggplot(df, aes(x=eval(parse(text = var)), fill = Distribution)) + geom_density(alpha=.5) +
     xlab(x.axis.label) + scale_x_continuous(breaks = seq(xlim[1], xlim[2], 0.4), minor_breaks = seq(xlim[1], xlim[2], 0.2), limits = c(xlim[1], xlim[2])) +
     theme_light() +
