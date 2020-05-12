@@ -50,14 +50,28 @@ TODO
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-my.plot = plot.MCMC.posterior(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
+# Plotting only the MCMC results
+my.plot1 = plot.MCMC.posterior(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
                               var = "B0",
                               label = "Model XYZ",
-                              xlim = c(6e4, 9e4),
                               x.axis.label = expression(B[0]),
+                              xlim = c(6e4, 9e4),
                               x.breaks.major.steps = 1e4,
                               x.breaks.minor.steps = 5e3)
-plot(my.plot)
+plot(my.plot1)
+
+# Plotting the MCMC results and the prior (lognormal.prior only available for the moment)
+my.plot2 = plot.MCMC.posterior(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
+                               var = "B0",
+                               label = "Model XYZ",
+                               x.axis.label = expression(B[0]),
+                               xlim = c(2e4, 12e4),
+                               x.breaks.major.steps = 2e4,
+                               x.breaks.minor.steps = 1e4,
+                               lognormal.prior = c(log(7e4), 0.2))
+
+plot(my.plot2)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
