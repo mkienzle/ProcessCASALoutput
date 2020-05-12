@@ -12,6 +12,8 @@ plot.MCMC.posterior <- function(filename,
                                 var = "NA",
                                 x.axis.label = "NA",
                                 xlim = c(0,4),
+                                x.breaks.major.steps = 0.4,
+                                x.breaks.minor.steps = 0.2,
                                 lognormal.prior = c(NA,NA)){
 
   # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
@@ -35,7 +37,7 @@ plot.MCMC.posterior <- function(filename,
 
   library(ggplot2)
   p <- ggplot(df, aes(x=eval(parse(text = var)), fill = Distribution)) + geom_density(alpha=.5) +
-    xlab(x.axis.label) + scale_x_continuous(breaks = seq(xlim[1], xlim[2], 0.4), minor_breaks = seq(xlim[1], xlim[2], 0.2), limits = c(xlim[1], xlim[2])) +
+    xlab(x.axis.label) + scale_x_continuous(breaks = seq(xlim[1], xlim[2], x.breaks.major.steps), minor_breaks = seq(xlim[1], xlim[2], x.breaks.minor.steps), limits = c(xlim[1], xlim[2])) +
     theme_light() +
     theme(axis.title.x = element_text(size = rel(1.8)), axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14))
 

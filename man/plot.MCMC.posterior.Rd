@@ -50,15 +50,14 @@ TODO
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
- plot.MCMC.posterior(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"), var = "B0")
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (x)
-{
-  }
+my.plot = plot.MCMC.posterior(filename = system.file("extdata", "quant.v1", package = "ProcessCASALoutput"),
+                              var = "B0",
+                              label = "Model XYZ",
+                              xlim = c(6e4, 9e4),
+                              x.axis.label = expression(B[0]),
+                              x.breaks.major.steps = 1e4,
+                              x.breaks.minor.steps = 5e3)
+plot(my.plot)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
