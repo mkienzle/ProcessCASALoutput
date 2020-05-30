@@ -48,15 +48,12 @@ TODO
 \examples{
 
 # What is the effect of updating (in turn) data in a CASAL model
-combined.obj = comb.obj(obj1 = extract.fits(system.file("extdata", "modelWith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLagePre2005,
-              obj2 = extract.fits(system.file("extdata", "modelwith2Sel-CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLageFrom2005)
-
-              audit.trail(models.path = c(system.file("extdata/LIN7_M=0.18+NewCatchTS", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
-                                          system.file("extdata/LIN7_M=0.18+NewCatchTS+TrawlCPUEDeltaLog", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
-                                          system.file("extdata/LIN7_M=0.18+NewCatchTS+TrawlCPUEDeltaLog+ScientificSurveyIndexOfAbundance", package = "ProcessCASALoutput")),
-            models.name =c("LIN7_M=0.18+NewCatchTS",
-                           "+TrawlCPUE(deltalog)",
-                           "+ScientificSurveyIndex"))
+audit.trail(models.path = c(system.file("extdata/MOdel 1", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
+                            system.file("extdata/Model 2", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
+                            system.file("extdata/Model 3", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput")),
+            models.name = c("LIN7_M=0.18+NewCatchTS",
+                            "+TrawlCPUE(deltalog)",
+                            "+ScientificSurveyIndex"))
 
 }
 
