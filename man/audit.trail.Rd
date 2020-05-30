@@ -57,6 +57,15 @@ at.res = audit.trail(models.path = c(system.file("extdata/MOdel 1", "CASAL-MPDou
 
 print(at.res)
 
+# A second example, illustrating the use of the function to compare model (not for audit trail)
+at.res2 = audit.trail(models.path = c(system.file("extdata/MOdel 4", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
+                                     system.file("extdata/Model 5", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput")),
+                     models.name = c("Survey index of abundance",
+                                     "CPUE index of abundance"))
+
+print(at.res2)
+
+
 }
 
 
