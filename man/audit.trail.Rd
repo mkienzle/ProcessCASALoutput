@@ -48,7 +48,7 @@ TODO
 \examples{
 
 # What is the effect of updating (in turn) data in a CASAL model
-at.res = audit.trail(models.path = c(system.file("extdata/MOdel 1", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
+at.res = audit.trail(models.path = c(system.file("extdata/Model 1", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
                                      system.file("extdata/Model 2", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
                                      system.file("extdata/Model 3", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput")),
                      models.name = c("LIN7_M=0.18+NewCatchTS",
@@ -58,7 +58,7 @@ at.res = audit.trail(models.path = c(system.file("extdata/MOdel 1", "CASAL-MPDou
 print(at.res)
 
 # A second example, illustrating the use of the function to compare model (not for audit trail)
-at.res2 = audit.trail(models.path = c(system.file("extdata/MOdel 4", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
+at.res2 = audit.trail(models.path = c(system.file("extdata/Model 4", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
                                      system.file("extdata/Model 5", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput")),
                      models.name = c("Survey index of abundance",
                                      "CPUE index of abundance"))
