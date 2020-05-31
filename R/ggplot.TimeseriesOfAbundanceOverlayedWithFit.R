@@ -8,6 +8,7 @@ ggplot.TimeseriesOfAbundanceOverlayedWithFit <- function(datafile = NA, path = N
 
   # Useful library
   library(casal)
+  library(ggplot2)
 
   # Get the data
   observations <- get(AbundIndex.Name[1], extract.fits(datafile[1], path))

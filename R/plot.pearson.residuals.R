@@ -7,6 +7,7 @@ plot.pearson.residuals <- function(obj1, obj2, combine = FALSE, year.lab = 1990:
 
   library(ggplot2)
   library(ggpubr)
+
   if (missing(obj2)) {
     df = FromObjToDF(obj1)
     df = within(df, {

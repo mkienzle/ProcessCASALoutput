@@ -51,7 +51,7 @@ TODO
 # An example
 plot.pearson.residuals(obj1 = extract.fits(system.file("extdata/Model 1", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"))$wcsiTRLage,
                        year.lab = seq(1970, 2020,5),
-                       age.lab = seq(0,30,2)))
+                       age.lab = seq(0,30,2))
 }
 
 
