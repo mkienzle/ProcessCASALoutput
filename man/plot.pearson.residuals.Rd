@@ -6,7 +6,7 @@
 \description{
 TO DO}
 \usage{
-plot.pearson.residuals(obj1, obj2, combine = FALSE, year.lab = 1990:2010, age.lab = seq(3,20,2)){
+plot.pearson.residuals(obj1, obj2, combine = FALSE, year.lab = 1990:2010, age.lab = seq(3,20,2))
 
 }
 \arguments{
