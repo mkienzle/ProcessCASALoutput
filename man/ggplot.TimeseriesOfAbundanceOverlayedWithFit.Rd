@@ -56,7 +56,7 @@ TODO
 # An example
 ggplot.TimeseriesOfAbundanceOverlayedWithFit(
                                               datafile = system.file("extdata/Model 1", "CASAL-MPDoutput.txt", package = "ProcessCASALoutput"),
-                                              path = getwd(),
+                                              path = ".",
                                               AbundIndex.Name = "wcsiTANbio",
                                               y.axis.lab = "Survey",
                                               xlab = c(1999, 2018),
