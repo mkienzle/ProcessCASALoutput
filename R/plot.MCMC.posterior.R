@@ -17,8 +17,14 @@ plot.MCMC.posterior <- function(filename,
                                 lognormal.prior = c(NA,NA)){
 
   # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
-  df <- data.frame(Distribution = as.factor(label[1]), read.table(paste(path, filename, sep=""), header = TRUE, skip = 8))
-
+  for(i in 1:length(filename)){
+    if(i == 1){
+  df <- data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8))
+    } else {
+      df = rbind(df,
+                 data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)) )
+    }
+  }
   # If the user wants to plot the prior
   if(! is.na(lognormal.prior[1])){
 
