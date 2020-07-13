@@ -20,10 +20,10 @@ plot.MCMC.posterior <- function(filename,
   # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
   for(i in 1:length(filename)){
     if(i == 1){
-  df <- data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var])
+  df <- data.frame(Distribution = as.factor(label[i]), x = read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var])
     } else {
       df = rbind(df,
-                 data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var]) )
+                 data.frame(Distribution = as.factor(label[i]), x = read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var]) )
     }
   }
   # If the user wants to plot the prior
@@ -35,15 +35,15 @@ plot.MCMC.posterior <- function(filename,
     # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
     x = rlnorm(1e5, meanlog = lognormal.prior[1], sdlog = lognormal.prior[2])
     tmp.df = data.frame(Distribution = "Prior", x = x)
-    dimnames(tmp.df)[[2]] = c("Distribution", var)
+    #dimnames(tmp.df)[[2]] = c("Distribution", var)
 
     #print(head(tmp.df))
-    df = rbind(df[, c("Distribution", var)], tmp.df)
+    df = rbind(df[, c("Distribution", "x")], tmp.df)
 
   }
 
   library(ggplot2)
-  p <- ggplot(df, aes(x=eval(parse(text = var)), fill = Distribution)) + geom_density(alpha=.5) +
+  p <- ggplot(df, aes(x= x, fill = Distribution)) + geom_density(alpha=.5) +
     xlab(x.axis.label) + scale_x_continuous(breaks = seq(xlim[1], xlim[2], x.breaks.major.steps), minor_breaks = seq(xlim[1], xlim[2], x.breaks.minor.steps), limits = c(xlim[1], xlim[2])) +
     theme_light() +
     theme(axis.title.x = element_text(size = rel(1.8)), axis.title.y = element_text(size = rel(1.8)), axis.text = element_text(size = 14))
@@ -53,3 +53,13 @@ plot.MCMC.posterior <- function(filename,
 
   return(p)
 }
+
+# Test
+# (my.PostAndPrior.plot = plot.MCMC.posterior(filename = c("../CASAL/WG Model 20 - trawl survey index of abundance - M = 0.18/All-MCMCquant.txt",
+#                                                         "../CASAL/WG Model 24 - trawl survey and CPUE index of abundance -  M = 0.18/All-MCMCquant.txt"),
+#                                                                 path = "C:/Users/kienzlemj/OneDrive - NIWA/Projects/Stock assessments/Ling/LIN 7/LIN201903/R/",
+#                                                                 label = c("base case", "model 5"),
+#                                                                 var = "q.wcsiTAN..q",
+#                                                                 x.axis.label = "survey catchability (q)",
+#                                                                 lognormal.prior = c(mu = 0.07, cv = 0.7)))
+
