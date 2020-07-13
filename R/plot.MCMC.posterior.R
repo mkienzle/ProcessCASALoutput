@@ -16,6 +16,7 @@ plot.MCMC.posterior <- function(filename,
                                 x.breaks.minor.steps = 0.2,
                                 lognormal.prior = c(NA,NA)){
 
+
   # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
   for(i in 1:length(filename)){
     if(i == 1){
