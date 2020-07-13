@@ -20,10 +20,10 @@ plot.MCMC.posterior <- function(filename,
   # WARNINGS: there is an ad-hoc number of samples drawn from the theoretical distribution
   for(i in 1:length(filename)){
     if(i == 1){
-  df <- data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8))
+  df <- data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var])
     } else {
       df = rbind(df,
-                 data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)) )
+                 data.frame(Distribution = as.factor(label[i]), read.table(paste(path, filename[i], sep=""), header = TRUE, skip = 8)[, var]) )
     }
   }
   # If the user wants to plot the prior
